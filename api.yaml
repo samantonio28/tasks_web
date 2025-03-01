@@ -32,6 +32,39 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/User'
+    delete:
+      tags:
+      - user
+      summary: Delete user
+      description: This can only be done by the logged in user.
+      operationId: deleteUser
+      parameters:
+      - name: id
+        in: path
+        description: The id of the user to delete
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: successful operation
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: Invalid session
+        '404':
+          description: User not found
+        '500':
+          description: Internal server error
+        '501':
+          description: Not implemented
+        '503':
+          description: Service unavailable
+        '504':
+          description: Service timeout
   /users/login:
     post:
       tags:
@@ -83,21 +116,13 @@ paths:
           description: Service unavailable
         '504':
           description: Service timeout
-  /users/{id}:
+  /users/logout:
     post:
       tags:
       - user
       summary: Logs out current logged in user session
       description: ''
       operationId: logoutUser
-      parameters:
-      - name: id
-        in: path
-        description: The id of the user to logout
-        required: true
-        schema:
-          type: integer
-          format: int64
       responses:
         '200':
           description: successful operation
@@ -106,7 +131,7 @@ paths:
               schema:
                 type: string
         '400':
-          description: Invalid id supplied
+          description: Invalid session
         '404':
           description: User not found
         '408':
@@ -118,41 +143,7 @@ paths:
         '503':
           description: Service unavailable
         '504':
-          description: Service timeout
-
-    delete:
-      tags:
-      - user
-      summary: Delete user
-      description: This can only be done by the logged in user.
-      operationId: deleteUser
-      parameters:
-      - name: id
-        in: path
-        description: The id of the user to delete
-        required: true
-        schema:
-          type: integer
-          format: int64
-      responses:
-        '200':
-          description: successful operation
-          content:
-            application/json:
-              schema:
-                type: string
-        '400':
-          description: Invalid id supplied
-        '404':
-          description: User not found
-        '500':
-          description: Internal server error
-        '501':
-          description: Not implemented
-        '503':
-          description: Service unavailable
-        '504':
-          description: Service timeout
+          description: Service timeout   
   /profiles/{id}:
     get:
       tags:
