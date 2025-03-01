@@ -123,6 +123,21 @@ paths:
       summary: Logs out current logged in user session
       description: ''
       operationId: logoutUser
+      parameters:
+      - name: X-Rate-Limit
+        in: header
+        required: true
+        description: calls per hour allowed by the user
+        schema:
+          type: integer
+          format: int32
+      - name: X-Expires-After
+        in: header
+        required: true
+        description: date in UTC when token expires
+        schema:
+          type: string
+          format: date-time
       responses:
         '200':
           description: successful operation
