@@ -33,7 +33,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/User'
   /users/login:
-    get:
+    post:
       tags:
       - user
       summary: Logs user into the system
@@ -84,7 +84,7 @@ paths:
         '504':
           description: Service timeout
   /users/{id}:
-    get:
+    post:
       tags:
       - user
       summary: Logs out current logged in user session
