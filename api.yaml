@@ -109,6 +109,8 @@ paths:
           description: Invalid id supplied
         '404':
           description: User not found
+        '408':
+          description: User not logged in
         '403':
           description: Forbidden (user is banned)
         '500':
